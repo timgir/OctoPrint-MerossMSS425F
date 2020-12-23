@@ -11,7 +11,7 @@ or manually using this URL:
 
 ## Configuration
 
-After that, you need to add email & password at your Meross account & choose plug to shutdown
+You need to add email & password at your Meross account & choose plug to shutdown
 into your `config.yaml` file at your local Octoprint folder:
 
 ```yaml
@@ -25,3 +25,5 @@ plugins:
 ```
 
 You have `first_plug`, `second_plug`, `third_plug`, `fourth_plug` & `usb_plug`.
+
+After that, add `M81` instruction into your GCODE file.

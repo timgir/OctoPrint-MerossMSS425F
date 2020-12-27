@@ -11,9 +11,9 @@ license: AGPLv3
 # TODO
 date: today's date in format YYYY-MM-DD, e.g. 2015-04-21
 
-homepage: https://github.com/Titome/OctoPrint-MerossMSS425F
-source: https://github.com/Titome/OctoPrint-MerossMSS425F
-archive: https://github.com/Titome/OctoPrint-MerossMSS425F/archive/master.zip
+homepage: https://github.com/timgir/OctoPrint-MerossMSS425F
+source: https://github.com/timgir/OctoPrint-MerossMSS425F
+archive: https://github.com/timgir/OctoPrint-MerossMSS425F/archive/master.zip
 
 # TODO
 # Set this to true if your plugin uses the dependency_links setup parameter to include

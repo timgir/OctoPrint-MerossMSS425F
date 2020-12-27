@@ -1,14 +1,3 @@
-# coding=utf-8
-from __future__ import absolute_import
-
-### (Don't forget to remove me)
-# This is a basic skeleton for your plugin's __init__.py. You probably want to adjust the class name of your plugin
-# as well as the plugin mixins it's subclassing from. This is really just a basic skeleton to get you started,
-# defining your plugin as a template plugin, settings and asset plugin. Feel free to add or remove mixins
-# as necessary.
-#
-# Take a look at the documentation on what other plugin mixins are available.
-
 import asyncio
 import octoprint.plugin
 from meross_iot.http_api import MerossHttpClient
@@ -35,8 +24,8 @@ async def shutdown(email, password, id_plugs):
 			await asyncio.sleep(1)
 
 
-class MerossMss425fPlugin(octoprint.plugin.SettingsPlugin,
-						  octoprint.plugin.AssetPlugin,
+class MerossMss425fPlugin(octoprint.plugin.AssetPlugin,
+						  octoprint.plugin.SettingsPlugin,
 						  octoprint.plugin.StartupPlugin,
 						  octoprint.plugin.TemplatePlugin):
 
@@ -46,7 +35,7 @@ class MerossMss425fPlugin(octoprint.plugin.SettingsPlugin,
 		return dict(
 			email='',
 			password='',
-			multiplug=dict(
+			multiplug = dict(
 				first_plug=False,
 				second_plug=False,
 				third_plug=False,
@@ -55,26 +44,16 @@ class MerossMss425fPlugin(octoprint.plugin.SettingsPlugin,
 			)
 		)
 
-	def get_template_vars(self):
-		return dict(email=self._settings.get(["email"]))
-
-	# def on_settings_save(self, data):
-	# 	self._logger.info('IN SETTINGS SAVE')
-	#
-	# 	octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
-	#
-	# 	self._logger.info('TEST')
-	# 	self._logger.info(self._settings.get(["email"]))
+	def get_template_configs(self):
+		return [
+			dict(type='settings', custom_bindings=False)
+		]
 
 	##~~ AssetPlugin mixin
 
 	def get_assets(self):
-		# Define your plugin's asset files to automatically include in the
-		# core UI here.
 		return dict(
-			js=["js/OctoPrint-MerossMSS425F.js"],
-			css=["css/OctoPrint-MerossMSS425F.css"],
-			less=["less/OctoPrint-MerossMSS425F.less"]
+			less=["less/meross-mss425f.less"]
 		)
 
 	##~~ Softwareupdate hook
@@ -90,12 +69,12 @@ class MerossMss425fPlugin(octoprint.plugin.SettingsPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="Titome",
+				user="timgir",
 				repo="OctoPrint-MerossMSS425F",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/Titome/OctoPrint-MerossMSS425F/archive/{target_version}.zip"
+				pip="https://github.com/timgir/OctoPrint-MerossMSS425F/archive/{target_version}.zip"
 			)
 		)
 
@@ -118,7 +97,10 @@ class MerossMss425fPlugin(octoprint.plugin.SettingsPlugin,
 			if 'usb_plug' in multiplug and multiplug['usb_plug'] is True:
 				id_plug.append(5)
 
-			asyncio.run(shutdown(email, password, id_plug))
+			if email != '' and password != '':
+				asyncio.run(shutdown(email, password, id_plug))
+			else:
+				self._logger.info('Connection information are not been set !')
 
 
 # If you want your plugin to be registered within OctoPrint under a different name than what you defined in setup.py

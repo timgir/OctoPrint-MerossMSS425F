@@ -12,7 +12,7 @@ async def shutdown(email, password, id_plugs):
 	await manager.async_init()
 
 	await manager.async_device_discovery()
-	plugs = manager.find_devices(device_type='mss425f')
+	plugs = manager.find_devices(device_type='mss425e') or manager.find_devices(device_type='mss425f')
 
 	if len(plugs) > 0:
 		plug = plugs[0]

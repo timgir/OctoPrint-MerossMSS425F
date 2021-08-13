@@ -10,12 +10,39 @@
         </div>
         <label class="control-label">{{  _('Plugs to shutdown') }}</label>
         <div class="controls">
-            <img src="/plugin/meross_mss425f/static/img/mss425f.png">
-            <input id="first_plug" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.first_plug">
-            <input id="second_plug" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.second_plug">
-            <input id="third_plug" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.third_plug">
-            <input id="fourth_plug" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.fourth_plug">
-            <input id="usb_plug" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.usb_plug">
+            <h3>{{ _('Choose your plug model') }}</h3>
+
+            <div class="accordion" id="accordion2">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                      Meross MSS425E
+                  </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse in">
+                  <div class="accordion-inner">
+                    Anim pariatur cliche...
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                      Meross MSS425F
+                  </a>
+                </div>
+                <div id="collapseTwo" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                      <img src="/plugin/meross_mss425f/static/img/mss425f.png">
+                      <input id="first_plug_mss425f" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.first_plug">
+                      <input id="second_plug_mss425f" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.second_plug">
+                      <input id="third_plug_mss425f" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.third_plug">
+                      <input id="fourth_plug_mss425f" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.fourth_plug">
+                      <input id="usb_plug_mss425f" type="checkbox" class="input-block-level"data-bind="checked: settings.plugins.meross_mss425f.multiplug.usb_plug">
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
     </div>
 </form>

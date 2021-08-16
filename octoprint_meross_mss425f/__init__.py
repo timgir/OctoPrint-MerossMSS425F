@@ -78,7 +78,7 @@ class MerossMss425fPlugin(octoprint.plugin.AssetPlugin,
 			)
 		)
 
-	def hook_gcode_queuning(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
+	async def hook_gcode_queuning(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
 		if gcode == 'M81':
 			email = self._settings.get(['email'])
 			password = self._settings.get(['password'])
@@ -98,11 +98,10 @@ class MerossMss425fPlugin(octoprint.plugin.AssetPlugin,
 				id_plug.append(5)
 
 			if email != '' and password != '':
-				asyncio.run(shutdown(email, password, id_plug))
-				# try:
-				# 	asyncio.run(shutdown(email, password, id_plug))
-				# except RuntimeError:
-				# 	await shutdown(email, password, id_plug)
+				try:
+					asyncio.run(shutdown(email, password, id_plug))
+				except RuntimeError:
+					await shutdown(email, password, id_plug)
 			else:
 				self._logger.info('Connection information are not been set !')
 

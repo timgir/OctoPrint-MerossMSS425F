@@ -102,7 +102,7 @@ class MerossMss425fPlugin(octoprint.plugin.AssetPlugin,
 					asyncio.run(shutdown(email, password, id_plug))
 				except RuntimeError:
 					loop = asyncio.get_running_loop()
-					loop.call_soon(shutdown(email, password, id_plug))
+					loop.run_until_complete(shutdown(email, password, id_plug))
 			else:
 				self._logger.info('Connection information are not been set !')
 
